@@ -1,6 +1,7 @@
 import csv
 from database.db import accident_db, injuries_db
 from datetime import datetime
+
 def read_csv(csv_path):
    with open(csv_path, 'r') as file:
        csv_reader = csv.DictReader(file)
@@ -12,7 +13,7 @@ def parse_date(date_str: str):
     date_format = '%m/%d/%Y %H:%M:%S %p' if has_seconds else '%m/%d/%Y %H:%M'
     return datetime.strptime(date_str, date_format)
 
-def init_accident():
+def init_data():
     accident_db.drop()
     injuries_db.drop()
 

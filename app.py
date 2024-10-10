@@ -1,10 +1,8 @@
 from flask import Flask
-from utils.import_data import init_accident
+from blue_prints.init_data import init_data_dp
 
 app = Flask(__name__)
-
-init_accident()
-
+app.register_blueprint(init_data_dp)
 @app.route('/')
 def hello_world():
     return 'Hello World!'

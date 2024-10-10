@@ -25,5 +25,5 @@ def init_accident():
                         'injuries_fatal': row['INJURIES_FATAL']},
            'accident_location': row['LOCATION']
        }
-       accident_db.insert(accident)
+       accident_db.insert_one(accident)
 

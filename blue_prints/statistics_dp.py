@@ -1,5 +1,8 @@
 from flask import Blueprint, jsonify
 
+from services.statistics_service import get_count_crash_area_and_period_time, get_crash_count_by_area, \
+    get_count_by_contributory, get_count_by_injuries
+
 statistics_bp = Blueprint('statistics', __name__)
 
 @statistics_bp.route('/statistics/<string:area>', methods=['GET'])
@@ -8,13 +11,12 @@ def count_crash_area(area):
     result = get_crash_count_by_area(area)
     if result:
         return jsonify(result), 200
-    else:
-        return jsonify({'error': 'No data found'}), 404
 
-@statistics_bp.route('/statistics/<string:area>/<string:period_time>', methods=['GET'])
-def count_crash_area_and_period_time(area, period_time):
+
+@statistics_bp.route('/statistics/<string:area>/<string:date>/<string:period_time>', methods=['GET'])
+def count_crash_area_and_period_time(area, date, period_time):
     """מחזיר את סכום התאונות באותו אזור באותה תקופה"""
-    result = get_count_crash_area_and_period_time(area, period_time)
+    result = get_count_crash_area_and_period_time(area, date, period_time)
     if result:
         return jsonify(result), 200
     else:

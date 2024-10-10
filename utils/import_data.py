@@ -31,8 +31,8 @@ def init_data():
 
             injuries = {
                 'accident_id': accident_id_db,
-                'injuries_total': row['INJURIES_TOTAL'],
-                'injuries_fatal': row['INJURIES_FATAL']
+                 'injuries_total': int(row['INJURIES_TOTAL']) if row['INJURIES_TOTAL'] else 0,
+                 'injuries_fatal': int(row['INJURIES_FATAL']) if row['INJURIES_FATAL'] else 0
             }
 
             inserted_injuries = injuries_db.insert_one(injuries)
